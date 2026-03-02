@@ -1,0 +1,336 @@
+/* 
+C1 : Thiết kế mobile first , sau đó dùng các breakpoint min-width
+VD ở mobile design , hero media và hero content 2 hàng 
+ở desktop cả 2 cùng 1 hàng
+=> ở style đặt hero-row : flex-dir column-reverse , row..
+=> ở responsive đặt ở min-width 1200px hero-row : flex-dir row
+
+C2 desktop first
+=> ở style đặt hero-row: flex-dir row
+=> ở responsive đặt ở max-width 1200px : hero-row : flex-dir column-reverse
+*/
+
+/* responsive theo bootstrap breakpoint ( mobile first ) */
+/* Default styles (Extra small: <576px) */
+body {
+  /* font-size: 14px; */
+}
+
+/* xs */
+@media screen and (max-width: 575.98px) {
+  /* body {
+    padding-inline: 20px;
+  } */
+
+  :root {
+    --h1-font-size: 4.2rem;
+    --h2-font-size: 3.6rem;
+    --h3-font-size: 2.4rem;
+  }
+  .section-desc {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
+  .btn {
+    width: 154px;
+    height: 56px;
+  }
+  .container,
+  .container-fluid,
+  .row {
+    /* padding-inline: 20px; */
+    /* giải quyết padding margin của container row */
+    --bs-gutter-x: 4rem;
+  }
+  .site-nav {
+    margin-inline: 0;
+    width: 100%;
+  }
+  /* cân nhắc dùng grid-template-areas cho container-fluid để
+   sắp xếp vị trí cho các item trên mobile thay vì dùng order  */
+  .site-branding {
+    /* order: -2; */
+    /* order: 1; */
+    flex-grow: 1;
+  }
+  .col-brand {
+    order: -2;
+  }
+  .site-contact {
+    /* order: 2; */
+    /* order: -1; */
+    margin-right: 10px;
+  }
+  .col-contact {
+    order: -1;
+  }
+  .mail-address {
+    display: none;
+  }
+  .header-navbar-toggler {
+    /* order: 3; */
+  }
+  .header-navbar-collapse {
+    /* position: fixed; */
+    /* order: 4; */
+    /* background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); */
+  }
+  /* separate between header and hero */
+  .separate-main {
+    width: 100%;
+    height: 1px;
+    background-color: #d6d3e2;
+    margin-top: 15.5px;
+  }
+  /* hero */
+  .hero {
+    margin-top: 50.5px;
+  }
+
+  .hero__thumb {
+    position: relative;
+    z-index: 2;
+    /* max-width: 514px; */
+    width: 259px;
+  }
+  .hero__desc {
+    padding-right: 32px;
+  }
+  .hero-actions {
+    margin-top: 30px;
+    gap: var(--bs-gutter-x);
+  }
+  .hero-social {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    /* gap: 15px; */
+    gap: calc(var(--bs-gutter-x) * 0.25);
+  }
+
+  /* client  */
+  .client {
+    margin-top: 125px;
+  }
+  .client__row {
+    gap: 42px;
+  }
+  .client__heading {
+    font-size: 2.8rem;
+    font-weight: 500;
+    line-height: 3.4rem;
+
+    /* padding-left: 30px; */
+    /* padding-inline: 84px; */
+    width: 180px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .client__heading::before {
+    --client__heading-before-width: 86px;
+
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .client__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    /* justify-content: space-between; */
+    /* row-gap col-gap */
+    gap: 36px 48px;
+  }
+  /* testimonal */
+  .testimonialCarousel-indicators {
+    bottom: -40px;
+  }
+
+  /* service */
+  .service {
+    margin-top: 120px;
+  }
+  .service-item {
+    padding: 29px 50px;
+  }
+  .serviceCarousel-indicators {
+    bottom: -50px;
+  }
+  /* project */
+  .project {
+    margin-top: 120px;
+    padding-block: 69px 60px;
+  }
+
+  .project__head {
+    text-align: center;
+    padding-inline: 20px;
+  }
+  .project__desc {
+    /* padding-inline: 20px; */
+  }
+}
+/* Small devices (≥576px) */
+@media (min-width: 576px) {
+  body {
+    /* font-size: 15px; */
+  }
+} /* Medium devices (≥768px) */
+@media (min-width: 768px) {
+  body {
+    /* font-size: 16px; */
+  }
+} /* Large devices (≥992px) */
+@media (min-width: 992px) {
+  body {
+    /* font-size: 17px; */
+  }
+  :root {
+    --h1-font-size: 7.2rem;
+    --h2-font-size: 5.2rem;
+  }
+  .hero-row {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 30px;
+  }
+  .hero-media {
+    /* reset mb figure của bs */
+    margin-bottom: 0;
+
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__decor-left {
+    /* left: 50%;
+    transform: translateX(-50%); */
+    left: 0;
+  }
+  .hero__decor-right {
+    right: -27px;
+  }
+  .client__list {
+  }
+
+  .nav-brand-img {
+    width: 74px;
+    object-fit: cover;
+  }
+  .mail-address {
+    display: block;
+  }
+  .hero__content {
+    /* mở rộng ra trái 1 đoạn gutter để text nằm sát rìa phải col base 7 */
+    margin-left: calc(-1 * var(--bs-gutter-x));
+  }
+}
+/* Tablet ngang / iPad Pro */
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+}
+
+/* Extra large X-Large devices (≥1200px) */
+@media (min-width: 1199.98px) {
+  body {
+    /* font-size: 18px; */
+  }
+  :root {
+    --h1-font-size: 8rem;
+    --h2-font-size: 5.6rem;
+    --h3-font-size: 3.2rem;
+  }
+  .mobile-header {
+    display: none;
+  }
+  .hero-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+  .hero__heading {
+    /* line-height: 8.2rem; */
+    margin-top: 130px;
+    /* padding-bottom: calc((80 - 76) * 1px); */
+  }
+  .hero__media {
+  }
+  .hero__content {
+    padding-left: var(--col-base-width);
+  }
+  /* client */
+  .client__heading {
+    padding-right: 17px;
+  }
+  .client__heading::before {
+    --client__heading-before-width: 86px;
+
+    top: 22px;
+    /* left: -100px; */
+    left: calc(-1 * (var(--client__heading-before-width) + 14px));
+    /* vì item có 1 khoảng padding left là --spacer/2 */
+    /* left: calc(-1 * (100px - (var(--spacer) / 2))); */
+    /* left: calc(-1 * (100px - var(--bs-gutter-x) * 0.5)); */
+  }
+  .client__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    /* justify-content: space-between; */
+    /* row-gap col-gap */
+    gap: 36px 53px;
+    /* 57 = 8*70 + 7*30 - 713 */
+    /* padding-left: calc(var(--bs-gutter-x) * 0.5 + 57px); */
+    padding-left: 57px;
+  }
+  /* service */
+  .service {
+    margin-top: 130px;
+  }
+  .service-item {
+    padding-block: 33px 32px;
+    padding-inline: 43px 42px;
+    /* padding-inline: calc(var(--bs-gutter-x) * 0.5 + 43px) calc(var(--bs-gutter-x) * 0.5 + 42px); */
+  }
+  /* [project */
+  /* override lên các common */
+  .project .row {
+    --bs-gutter-y: 3rem;
+  }
+  .project__desc {
+    padding-inline: 28px var(--col-base-width);
+    padding-top: 30px;
+  }
+}
+/* Extra extra large  XX-Large devices (≥1400px) */
+@media (min-width: 1399.98px) {
+  body {
+    /* font-size: 19px; */
+  }
+}
+/* PC & Laptop */
+
+/* Large devices (desktops, 992px and up) */
+/* tablet & mobile có những thành phần giống nhau */
+/* Tablet and mobile */
+@media screen and (min-width: 991px) {
+}
+/* md */
+@media screen and (max-width: 991px) {
+}
+/* Tablet dọc */
+@media screen and (max-width: 991px) and (min-width: 767.98px) {
+}
+/*  Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 767px) {
+}
+/*  Medium devices (tablets, 768px and up) */
+@media screen and (max-width: 766.98px) {
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+}

@@ -1,0 +1,442 @@
+/* 
+C1 : Thiết kế mobile first , sau đó dùng các breakpoint min-width
+VD ở mobile design , hero media và hero content 2 hàng 
+ở desktop cả 2 cùng 1 hàng
+=> ở style đặt hero-row : flex-dir column-reverse , row..
+=> ở responsive đặt ở min-width 1200px hero-row : flex-dir row
+
+C2 desktop first
+=> ở style đặt hero-row: flex-dir row
+=> ở responsive đặt ở max-width 1200px : hero-row : flex-dir column-reverse
+*/
+
+/* responsive theo bootstrap breakpoint ( mobile first ) */
+/* Default styles (Extra small: <576px) */
+/* Default styles: Desktop (≥1400px) */
+
+/* body {
+  font-size: 18px;
+  padding: 40px;
+} */
+/* xxl */
+@media screen and (max-width: 1400px) {
+}
+
+/* Extra large devices (≤1200px) */
+@media (max-width: 1200px) {
+  /* body {
+    font-size: 17px;
+    padding: 30px;
+  } */
+}
+
+/* Large devices (≤992px) */
+@media (max-width: 992px) {
+  /* body {
+    font-size: 16px;
+    padding: 25px;
+  } */
+}
+
+/* Medium devices (≤768px) */
+@media (max-width: 768px) {
+  /* body {
+    font-size: 15px;
+    padding: 20px;
+  } */
+}
+
+/* Small devices (≤576px) */
+@media (max-width: 576px) {
+  /* body {
+    font-size: 14px;
+    padding: 15px;
+  } */
+  :root {
+    --h1-font-size: 4.2rem;
+    --h2-font-size: 3.6rem;
+    --h3-font-size: 2.4rem;
+  }
+  .section-desc {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
+  .btn {
+    width: 154px;
+    height: 56px;
+  }
+  .container,
+  .container-fluid,
+  .row {
+    /* padding-inline: 20px; */
+    /* giải quyết padding margin của container row */
+    --bs-gutter-x: 4rem;
+  }
+  /* keep the row “shrink‑to‑content” and allow absolute children */
+
+  .header-row {
+    /* display: flex; */
+    flex-wrap: nowrap;
+    position: relative; /* anchor for the absolute collapse */
+    align-items: center;
+  }
+  /* override len bs */
+  .header-row > * {
+    /* Cho các col là kích thước nội dung, không full-width */
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .site-nav {
+    margin-inline: 0;
+    width: 100%;
+  }
+  /* cân nhắc dùng grid-template-areas cho container-fluid để
+   sắp xếp vị trí cho các item trên mobile thay vì dùng order  */
+  .header-row .site-branding {
+    /* order: -2; */
+    /* order: 1; */
+    /* flex-grow: 1; */
+    justify-content: flex-start;
+  }
+  .col-brand {
+    order: -2;
+    /* flex: 1 1 auto; */
+    flex-grow: 1;
+  }
+
+  .site-contact {
+    /* order: 2; */
+    /* order: -1; */
+    margin-right: 10px;
+  }
+  .col-contact {
+    order: -1;
+  }
+  .header .mail-address {
+    display: none;
+  }
+  .nav-brand-img {
+    width: 37px;
+    object-fit: cover;
+  }
+  .header-navbar-toggler {
+    /* order: 3; */
+  }
+  .header-navbar-collapse {
+    /* position: fixed; */
+    /* order: 4; */
+    /* background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); */
+  }
+  /* make the collapse panel float underneath, not stretch the row */
+  .header-navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%; /* fill the width of the header-row */
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index: 98;
+    text-align: right;
+  }
+
+  .header .navbar-nav .nav__link:last-child {
+    padding-right: 21px;
+  }
+  /* keep the toggler above the dropdown */
+  .header-navbar-toggler {
+    z-index: 99;
+  }
+  /* separate between header and hero */
+  .separate-main {
+    width: 100%;
+    height: 1px;
+    background-color: #d6d3e2;
+    margin-top: 15.5px;
+  }
+  /* hero */
+  .hero {
+    margin-top: 50.5px;
+  }
+  .col-hero-media {
+    order: 2;
+  }
+  .col-hero-content {
+    order: 1;
+  }
+  .hero-media {
+    display: flex;
+    justify-content: center;
+  }
+  .hero__thumb {
+    position: relative;
+    z-index: 2;
+    /* max-width: 514px; */
+    width: 259px;
+  }
+  .hero__content {
+    padding-top: 0;
+  }
+  .hero__desc {
+    padding-right: 32px;
+  }
+  .hero-actions {
+    margin-top: 30px;
+    gap: var(--bs-gutter-x);
+  }
+  .hero-social {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    /* gap: 15px; */
+    gap: calc(var(--bs-gutter-x) * 0.25);
+  }
+  .hero__decor-left {
+    left: 20px;
+  }
+
+  /* client  */
+  .client {
+    margin-top: 125px;
+  }
+  .client__row {
+    gap: 42px;
+  }
+  .client__heading {
+    font-size: 2.8rem;
+    font-weight: 500;
+    line-height: 3.4rem;
+
+    /* padding-left: 30px; */
+    /* padding-inline: 84px; */
+    width: 180px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .client__heading::before {
+    --client__heading-before-width: 86px;
+
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .client__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    /* justify-content: space-between; */
+    /* row-gap col-gap */
+    gap: 36px 48px;
+    padding-left: 0;
+  }
+  /* testimonal */
+  .testimonialCarousel-indicators {
+    /* bottom: -40px; */
+  }
+
+  /* service */
+  .service {
+    margin-top: 120px;
+  }
+  .service-item {
+    padding: 29px 50px;
+  }
+
+  .serviceCarousel-indicators {
+    /* bottom: -50px; */
+  }
+  /* project */
+  .project {
+    margin-top: 120px;
+    padding-block: 69px 60px;
+  }
+  .project-list {
+    margin-top: 60px;
+  }
+  .project__head {
+    text-align: center;
+    padding-inline: 20px;
+  }
+  .project__desc {
+    /* padding-inline: 20px; */
+    padding-top: 0;
+  }
+  .project-item {
+    padding: 24px 18px;
+  }
+  .project-item__wrapper {
+    gap: 22px;
+  }
+  .project-item__thumb {
+    width: 123px;
+    object-fit: cover;
+  }
+  .projectCarousel-indicators .projectCarousel-indicator {
+    background-color: var(--white-color);
+  }
+  .projectCarousel-indicators .active {
+    border-color: #ccc;
+  }
+  .projectCarousel-indicators .active::before {
+    background-color: #ccc;
+  }
+  .project__links {
+    margin-top: 45px;
+  }
+
+  /* about */
+  .about__intro {
+    font-size: 2rem;
+  }
+  .about__desc {
+    margin-bottom: 50px;
+    padding-inline: 10px;
+  }
+  .about__list {
+    margin-block: 30px;
+    --bs-gutter-x: 5rem;
+    padding-inline: 16px;
+  }
+  .about-item__heading {
+    font-size: 3rem;
+    line-height: 4.2rem;
+    letter-spacing: 0.09rem;
+  }
+  .about-item__desc {
+    line-height: 2.2rem;
+  }
+
+  .about__separate {
+    margin-inline: 0;
+  }
+  /* video */
+  .video-player {
+    margin-top: 40px;
+  }
+  .play-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .video-icon {
+    width: 15px;
+    height: 18px;
+  }
+  .volumeIcon {
+    width: 30px;
+    height: 30px;
+  }
+  .fullscreenBtn {
+    width: 30px;
+    height: 30px;
+  }
+  /* testimonal */
+  .testimonal {
+    margin-top: -110px;
+    padding-top: 230px;
+    padding-bottom: 64px;
+    background: #fbfaff;
+    position: relative;
+  }
+  .testimonal__desc {
+    padding-inline: 10px;
+  }
+  .testimonal-list {
+    padding-top: 40px;
+  }
+  .carousel-item__p-wrapper {
+    /* giới hạn p chỉ hiển thị 3 dòng , mỗi dòng 4rem => 120px */
+    --line-clamp: 3;
+
+    font-size: 1.8rem;
+  }
+  .carousel-item__media {
+    font-size: 2.4rem;
+  }
+  /* faq */
+  .faq__heading {
+    padding-right: 44px;
+  }
+  .faq-accordion {
+    /* padding-right: 60px; */
+    margin-top: 42px;
+  }
+  .accordion-header .accordion-button {
+    font-size: 2.4rem;
+    line-height: 3rem;
+    padding: 0 10px 15px 0;
+  }
+  .accordion-body {
+    padding: 0 44px 15px 0;
+  }
+  /* gallery */
+  .gallery {
+    margin-top: 120px;
+  }
+  .gallery__desc {
+    margin-bottom: 10px;
+  }
+  .gallery__contact {
+    font-size: 2rem;
+  }
+  .gallery__list {
+    margin-top: 60px;
+  }
+  /* cta */
+  .cta {
+    margin-top: 120px;
+    padding-block: 36px;
+  }
+  .cta__icon {
+    width: 48px;
+    object-fit: cover;
+  }
+  .cta__decor-left,
+  .cta__decor-right {
+    display: none;
+  }
+  .cta__heading {
+    padding-inline: 80px;
+  }
+  .cta__desc {
+    margin-top: 10px;
+    padding-inline: 20px;
+  }
+  .cta__decor-center svg {
+    width: 390px;
+    height: 386px;
+  }
+  /* footer */
+  .footer .site-contact {
+    justify-content: center;
+    margin-block: 20px 40px;
+  }
+  .footer .navbar-nav {
+    justify-content: space-between;
+  }
+}
+
+/* Extra small devices (<576px) */
+@media (max-width: 400px) {
+  /* body {
+    font-size: 13px;
+    padding: 10px;
+  } */
+}
+/* Grid layout cho màn hình lớn */
+@media (min-width: 992px) {
+  .project-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+} /* Mobile giữ block để JS khởi tạo carousel */
+@media (max-width: 991px) {
+  .project-row {
+    display: block;
+  }
+}
